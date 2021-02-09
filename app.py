@@ -16,7 +16,8 @@ def main():
 @app.route('/add_number', methods=['POST'])
 def add_message():
     x = request.form['calc']
-    messages.append(Message(x))
+    y = int(x) + 1
+    messages.append(Message(y))
     return redirect(url_for('main'))
 
 
