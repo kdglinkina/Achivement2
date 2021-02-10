@@ -5,9 +5,10 @@
     <title>Main page</title>
 </head>
 <body>
+<h1>Main page</h1>
 <form method="post" action="/add_number">
     Insert a natural number: <input type="number" name="calc" min="0">
-    <button type="submit" >Add </button>
+    <button type="submit">Add </button>
 </form>
 <h3>List of increased numbers</h3>
 {% for message in messages %}
