@@ -71,7 +71,6 @@ def add_message():
             print('this number is 1 less than the previous one')
 
     messages.append(x)
-    з
     return redirect(url_for('main'))
 
 
