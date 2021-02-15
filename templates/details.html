@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article.id }}</title>
+</head>
+<body>
+    <div>
+        <p> Increased number is <b>{{ article.user_number }}</b></p>
+        <p> Database index: {{ article.id }}</p>
+        <p> Added at: {{ article.date }}</p>
+        <p><a href="/database/{{ article.id }}/delete"> Wanna delete? </a></p>
+    </div>
+</body>
+</html>

@@ -39,6 +39,11 @@ def database():
     return render_template('database.html', articles=articles)
 
 
+@app.route('/database/<int:id>')
+def details(id):
+    article = Article.query.get(id)
+    return render_template('details.html', article=article)
+
 # инкремент через БД sqlite
 @app.route('/adding', methods=['POST', 'GET'])
 def adding():
@@ -52,14 +57,25 @@ def adding():
             db.session.commit()
             return redirect('/database')
         except:
-            return 'ERROR'
+            return 'An error occurred by adding'
     else:
         return render_template('adding.html')
+
+
+@app.route('/database/<int:id>/delete')
+def delete(id):
+    article = Article.query.get_or_404(id)
+    try:
+        db.session.delete(article)
+        db.session.commit()
+        return redirect('/database')
+    except:
+        return 'An error occurred by deleting'
+
 
 # деревенская БД в формате списка на вкладке MainPage
 @app.route('/add_number', methods=['POST'])
 def add_message():
-
     x = int(request.form['calc']) + 1
     messagesLen = len(messages)
 

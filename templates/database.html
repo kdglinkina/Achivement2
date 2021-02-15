@@ -7,11 +7,12 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Database</h1>
+        <h2>Database</h2>
         {% for el in articles %}
-            <div class="alert alert-info">
-                <p><b>{{ el.user_number }}</b></p>
-
+            <div>
+                <p><b>{{ el.user_number }}</b>&ensp;
+                <a href="/database/{{ el.id }}"> Details </a> &ensp;
+                <a href="/database/{{ el.id }}/delete"> Delete </a></p><br>
             </div>
 
         {% endfor %}
