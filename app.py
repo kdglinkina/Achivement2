@@ -44,7 +44,7 @@ def details(id):
     article = Article.query.get(id)
     return render_template('details.html', article=article)
 
-# инкремент через БД sqlite
+# Increment via sqlite
 @app.route('/adding', methods=['POST', 'GET'])
 def adding():
     if request.method == "POST":
