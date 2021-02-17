@@ -73,22 +73,5 @@ def delete(id):
         return 'An error occurred by deleting'
 
 
-# деревенская БД в формате списка на вкладке MainPage
-@app.route('/add_number', methods=['POST'])
-def add_message():
-    x = int(request.form['calc']) + 1
-    messagesLen = len(messages)
-
-    if messagesLen > 0:
-        y = messages[messagesLen - 1]
-        if x == y:
-            print('this number is equal to the previous one')
-        if x == (y - 1):
-            print('this number is 1 less than the previous one')
-
-    messages.append(x)
-    return redirect(url_for('main'))
-
-
 if __name__ == '__main__':
     app.run()
