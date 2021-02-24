@@ -44,22 +44,28 @@ def details(id):
     article = Article.query.get(id)
     return render_template('details.html', article=article)
 
+
 # Increment via sqlite
 @app.route('/adding', methods=['POST', 'GET'])
 def adding():
     if request.method == "POST":
-        user_number = request.form['added']
-        increased = int(user_number) + 1
-        article = Article(user_number=increased)
+        user_number = int(request.form['added'])
+        if Article.query.filter_by(user_number=user_number).first() is None:
+            if Article.query.filter_by(user_number=user_number+1).first() is None:
+                increased = int(user_number) + 1
+                article = Article(user_number=increased)
+            else:
+                return 'Inserted number has been already increased and added to database'
 
-        try:
-            db.session.add(article)
-            db.session.commit()
-            return redirect('/database')
-        except:
-            return 'An error occurred by adding'
-    else:
-        return render_template('adding.html')
+            try:
+                db.session.add(article)
+                db.session.commit()
+                return redirect('/database')
+            except:
+                return 'An error occurred by adding'
+        else:
+            return 'This number already exists in database'
+    return render_template('adding.html')
 
 
 @app.route('/database/<int:id>/delete')
