@@ -1,6 +1,4 @@
-from collections import namedtuple
-
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -19,18 +17,9 @@ class Article(db.Model):
         return '<Article %r>' % self.id
 
 
-Message = namedtuple('Message', 'number')
-messages = []
-
-
 @app.route('/')
 def hello():
     return render_template('index.html')
-
-
-@app.route('/main', methods=['GET'])
-def main():
-    return render_template('main.html', messages=messages)
 
 
 @app.route('/database')
