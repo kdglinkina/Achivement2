@@ -1,7 +1,5 @@
 from flask import Flask, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
-from dotenv import load_dotenv
-import os
 from datetime import datetime
 
 app = Flask(__name__)
@@ -35,7 +33,7 @@ def details(id):
     return render_template('details.html', article=article)
 
 
-# Increment via sqlite
+# Increment
 @app.route('/adding', methods=['POST', 'GET'])
 def adding():
     if request.method == "POST":
