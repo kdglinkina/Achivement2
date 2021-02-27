@@ -1,9 +1,19 @@
-FROM python:3.8
+FROM python:3.8.0-buster
 LABEL owner = "Kseniia Glinkina"
-RUN apt-get upgrade -y python3-pip python-dev
-WORKDIR /app
-COPY . /app
-RUN pip3 install -r requirements.txt
+RUN apt-get upgrade -y
+RUN pip install --upgrade pip
+#python-pip python-dev
+# Make a directory for our application
+WORKDIR /application
+# Install dependencies
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+# Copy our source code
+COPY /app.py .
 EXPOSE 5000
 ENTRYPOINT  ["python3"]
-CMD ["app.py"]
+# Run the application
+CMD ["python", "app.py"]
+
+
+
