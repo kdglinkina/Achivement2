@@ -7,13 +7,14 @@ RUN pip install --upgrade pip
 WORKDIR /application
 # Install dependencies
 COPY requirements.txt .
+COPY config.py .
 RUN pip install -r requirements.txt
 # Copy our source code
 COPY /app.py .
 EXPOSE 5000
 ENTRYPOINT  ["python3"]
 # Run the application
-CMD ["python", "app.py"]
+CMD ["app.py"]
 
 
 
