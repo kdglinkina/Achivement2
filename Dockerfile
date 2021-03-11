@@ -1,15 +1,14 @@
-FROM python:3.8.0-buster
+FROM ubuntu:latest
 LABEL owner = "Kseniia Glinkina"
-RUN apt-get upgrade -y
-RUN pip install --upgrade pip
+RUN apt-get update -y
+RUN apt-get install -y python3 python3-pip python3-dev build-essential
 # Make a directory for our application
 WORKDIR /app
-# Install dependencies
 COPY requirements.txt .
-COPY config.py .
+# Install dependencies
 RUN pip3 install -r requirements.txt
 # Copy our source code
-COPY app.py .
+COPY . /app
 EXPOSE 5000
 # Run the application
 ENTRYPOINT  ["python3"]
