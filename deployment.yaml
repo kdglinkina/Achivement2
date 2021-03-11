@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: achivement2-deployment
+  name: achivement2-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: achivement2-deployment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: achivement2-deployment
+    spec:
+      containers:
+      - image: dockerpython
+        name: dockerpython
