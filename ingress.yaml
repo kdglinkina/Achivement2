@@ -3,9 +3,8 @@ kind: Ingress
 metadata:
   name: achivement2-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.org/rewrites: >
-      serviceName=achivement2-service rewrite=/;
+    kubernetes.io/ingress.class: haproxy
+   namespace: ns-10
 spec:
   rules:
   - host: node-10.fergus.host
