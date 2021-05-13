@@ -16,7 +16,7 @@ spec:
         app: achivement2-deployment
     spec:
       containers:
-      - image: dockerpython
+      - image: insincere/ach2
         name: dockerpython
         env:
           - name: POSTGRES_DB
