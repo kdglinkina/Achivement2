@@ -4,8 +4,9 @@ metadata:
   name: achivement2-ingress
   annotations:
     kubernetes.io/ingress.class: haproxy
-   namespace: ns-10
+  namespace: ns-10
 spec:
+  ingressClassName: haproxy
   rules:
   - host: node-10.fergus.host
   - http:
