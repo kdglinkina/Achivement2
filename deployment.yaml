@@ -19,7 +19,7 @@ spec:
       - image: insincere/ach2
         name: dockerpython
         ports: 
-        - containerPort: 80
+        - containerPort: 5000
         env:
           - name: POSTGRES_DB
             value: "storage"
