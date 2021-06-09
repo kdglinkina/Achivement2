@@ -1,0 +1,57 @@
+swagger: "2.0"
+info:
+  description: "Glinkina Kseniia , API documentation"
+  version: "1.0.0"
+  title: "Achivement №2"
+host: "localhost:5000"
+basePath: "/v2"
+tags:
+- name: "Repositoty"
+  description: "https://github.com/kdglinkina/Achivement2/"
+schemes:
+- "http"
+paths:
+  /number:
+    post:
+      tags:
+      - "adding"
+      summary: "Add a new number to the database"
+      description: "increment by adding"
+      operationId: "add"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Number object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "/definitions/number"
+      responses:
+        "405":
+          description: "Invalid input"
+  /number/id:
+    delete:
+        tags:
+        - "deleting"
+        summary: "Delete an existing record"
+        description: "Visual deleting from the database."
+        operationId: "deleteNumber"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "path"
+          name: "id"
+          description: "The number that needs to be deleted"
+          required: true
+          type: "string"
+        responses:
+          "400":
+            description: "Invalid number supplied"
+          "404":
+            description: "Number not found"
