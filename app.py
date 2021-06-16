@@ -49,13 +49,13 @@ def adding():
         if Article.query.filter_by(user_number=user_number).first() is None:
             # Increased number is absent in DB
             if Article.query.filter_by(user_number=user_number + 1).first() is None:
-                increased = request.json(int(user_number) + 1)
-                article = Article(user_number=increased)
+                increased = int(user_number) + 1
+                article = Article(user_number=user_number)
                 try:
                     # Adding increased number to DB
                     db.session.add(article)
                     db.session.commit()
-                    result = 'Added', 200
+                    result = 'Added {}'.format(increased), 200
                 except:
                     result = 'An error occurred by adding', 500
             # Increased number is already in DB
@@ -82,4 +82,4 @@ def delete(id):
 
 print (SQLALCHEMY_DATABASE_URI)
 if __name__ == '__main__':
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
