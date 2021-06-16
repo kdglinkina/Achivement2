@@ -4,6 +4,8 @@ from flask_cors import CORS
 
 from datetime import datetime
 
+from config import SQLALCHEMY_DATABASE_URI
+
 app = Flask(__name__)
 cors = CORS(app)
 app.config.from_pyfile('config.py')
@@ -78,6 +80,6 @@ def delete(id):
     except:
         return 'An error occurred by deleting', 500
 
-
+print (SQLALCHEMY_DATABASE_URI)
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, port=5000, host='0.0.0.0')

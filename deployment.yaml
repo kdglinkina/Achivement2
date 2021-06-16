@@ -24,11 +24,10 @@ spec:
           - name: POSTGRES_DB
             value: "storage"
           - name: POSTGRES_USER
-            value: "postgres"
+            value: "guest"
           - name: POSTGRES_PASSWORD
-            value: "test123"
+            value: "12345678"
           - name: PORT_DB
             value: "5432"
-
-
-
+          - name: SQLALCHEMY_DATABASE_URI
+            value: "postgresql://guest:12345678@91.77.169.186:5432/storage"
