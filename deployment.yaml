@@ -16,7 +16,7 @@ spec:
         app: achivement2-deployment
     spec:
       containers:
-      - image: insincere/ach2
+      - image: insincere/ach2:2.0.2
         name: dockerpython
         ports: 
         - containerPort: 5000
@@ -31,3 +31,5 @@ spec:
             value: "5432"
           - name: SQLALCHEMY_DATABASE_URI
             value: "postgresql://guest:12345678@91.77.169.186:5432/storage"
+#      nodeSelector:
+#        nodeName: node-16

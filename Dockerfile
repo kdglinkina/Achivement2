@@ -13,6 +13,3 @@ EXPOSE 5000
 # Run the application
 ENTRYPOINT  ["python3"]
 CMD ["app.py"]
-
-
-

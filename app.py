@@ -8,7 +8,8 @@ from config import SQLALCHEMY_DATABASE_URI
 
 app = Flask(__name__)
 cors = CORS(app)
-app.config.from_pyfile('config.py')
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://guest:12345678@91.77.169.186:5432/storage"
+
 db = SQLAlchemy(app)
 
 client = app.test_client()
@@ -40,32 +41,33 @@ def details(id):
 
 
 # Increment
-@app.route('/adding', methods=['POST', 'GET'])
-def adding():
-    result = ()
-    if request.method == "POST":
-        user_number = int(request.form['added'])
+@app.route('/adding/<int:num>', methods=['GET'])
+def adding(num):
+    result = ""
+    if request.method == "GET":
+        user_number = int(num)
         # Inserted number is absent in DB
         if Article.query.filter_by(user_number=user_number).first() is None:
             # Increased number is absent in DB
             if Article.query.filter_by(user_number=user_number + 1).first() is None:
                 increased = int(user_number) + 1
-                article = Article(user_number=user_number)
+                article = Article(id=user_number,user_number=user_number)
                 try:
                     # Adding increased number to DB
                     db.session.add(article)
                     db.session.commit()
-                    result = 'Added {}'.format(increased), 200
+                    result = 'Added {}'.format(increased)
                 except:
-                    result = 'An error occurred by adding', 500
+                    result = 'An error occurred by adding'
             # Increased number is already in DB
             else:
-                result = 'Inserted number has been already increased and added to database', 400
+                result = 'Inserted number has been already increased and added to database'
         # Inserted number is already in DB
         else:
-            result = 'This number already exists in database', 400
+            result = 'This number already exists in database'
         print(result)
-    return render_template('adding.html')
+    return {"result": result }
+
 
 
 @app.route('/database/<int:id>/delete', methods=['DELETE'])
